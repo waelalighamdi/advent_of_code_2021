@@ -1,0 +1,16 @@
+fun part2(horizontalPositions: List<Int>): Int {
+    var leastFuelCost: Int? = null
+    val min = horizontalPositions.minOrNull()
+    val max = horizontalPositions.maxOrNull()
+
+    for (position in min!!..max!!) {
+        var sumOfStepsToPosition = 0
+        for (crabPosition in horizontalPositions) {
+            val steps = (crabPosition - position).absoluteValue
+            sumOfStepsToPosition += sumOfSteps(steps)
+        }
+        if (leastFuelCost == null) leastFuelCost = sumOfStepsToPosition
+        else if (sumOfStepsToPosition < leastFuelCost) leastFuelCost = sumOfStepsToPosition
+    }
+    return leastFuelCost!!
+}
